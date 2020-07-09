@@ -1,4 +1,5 @@
 #pragma once
+#include "food.h"
 
 namespace Mycafe {
 
@@ -42,6 +43,8 @@ namespace Mycafe {
 	private: System::Windows::Forms::Button^ button4;
 	private: System::Windows::Forms::Button^ button5;
 
+
+
 	private:
 		/// <summary>
 		/// Обязательная переменная конструктора.
@@ -69,6 +72,7 @@ namespace Mycafe {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 28.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
+			this->label1->ForeColor = System::Drawing::Color::SaddleBrown;
 			this->label1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"label1.Image")));
 			this->label1->Location = System::Drawing::Point(110, 49);
 			this->label1->Name = L"label1";
@@ -78,7 +82,8 @@ namespace Mycafe {
 			// 
 			// button1
 			// 
-			this->button1->BackColor = System::Drawing::Color::Sienna;
+			this->button1->BackColor = System::Drawing::Color::SaddleBrown;
+			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button1->ForeColor = System::Drawing::SystemColors::Control;
@@ -91,7 +96,8 @@ namespace Mycafe {
 			// 
 			// button2
 			// 
-			this->button2->BackColor = System::Drawing::Color::Sienna;
+			this->button2->BackColor = System::Drawing::Color::SaddleBrown;
+			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button2->ForeColor = System::Drawing::SystemColors::Control;
@@ -104,7 +110,8 @@ namespace Mycafe {
 			// 
 			// button3
 			// 
-			this->button3->BackColor = System::Drawing::Color::Sienna;
+			this->button3->BackColor = System::Drawing::Color::SaddleBrown;
+			this->button3->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button3->ForeColor = System::Drawing::SystemColors::Control;
@@ -117,7 +124,8 @@ namespace Mycafe {
 			// 
 			// button4
 			// 
-			this->button4->BackColor = System::Drawing::Color::Sienna;
+			this->button4->BackColor = System::Drawing::Color::SaddleBrown;
+			this->button4->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button4->ForeColor = System::Drawing::SystemColors::Control;
@@ -130,7 +138,8 @@ namespace Mycafe {
 			// 
 			// button5
 			// 
-			this->button5->BackColor = System::Drawing::Color::Sienna;
+			this->button5->BackColor = System::Drawing::Color::SaddleBrown;
+			this->button5->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button5->ForeColor = System::Drawing::SystemColors::Control;
@@ -154,6 +163,7 @@ namespace Mycafe {
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label1);
+			this->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
 			this->Name = L"menu";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
