@@ -21,6 +21,9 @@
     <ClCompile Include="food.cpp">
       <Filter>Файлы заголовков</Filter>
     </ClCompile>
+    <ClCompile Include="My_Lunch.cpp">
+      <Filter>Файлы заголовков</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="menu.h">
@@ -29,9 +32,18 @@
     <ClInclude Include="food.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="My_Lunch.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="Заказ.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="Основное меню.txt">
+      <Filter>Файлы ресурсов</Filter>
+    </Text>
+    <Text Include="Бизнес-ланчи.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
   </ItemGroup>

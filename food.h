@@ -34,12 +34,12 @@ public:
 		}
 	}
 
-	property double^ Price
+	property double Price
 	{
-		double^ get() {
+		double get() {
 			return price;
 		}
-		void set(double^ price) {
+		void set(double price) {
 			price = price;
 		}
 	}
@@ -47,6 +47,7 @@ public:
 
 public ref class food
 {
+	String^ name;
 	array <dish^>^ food_list = gcnew array <dish^>(100);
 	int len;
 public:
@@ -58,16 +59,38 @@ public:
 	void View(System::Windows::Forms::DataGridView^);
 	food^ fattest();
 	food^ most_expensive();
+	double sum_price();
+	int sum_cal();
 	//Выбрать все блюда, калорийность которых ниже, чем указанное значение, и подсчитать их стоимость.
 	double sort_cal(int);
+	//Выбрать все ланчи, калорийность которых ниже, чем указанное значение.Подсчитать стоимость
+	double sort_luhch(array <food^>^, int);
+	food^ operator =(food^ other);
+	bool operator ==(food^ other);
+
+	property String^ Name
+	{
+		String^ get() {
+			return name;
+		}
+		void set(String^ Name) {
+			name = Name;
+		}
+	}
 
 };
 
-////Выбрать все ланчи, калорийность которых ниже, чем указанное значение.Подсчитать стоимость.
-//double sort_cal_in_mas(array <food^>^ l, int cal)
-//{
-//	for (int i = 0; i < l->Length; i++)
-//	{
-//		if ()
-//	}
-//}
+public ref class food_arr
+{
+	int Count;
+	array <food^>^ lunch_list = gcnew array <food^>(100);
+public:
+	food_arr();
+	bool empty();
+	bool full();
+	bool Add(food^);
+	bool Del(food^);
+	void View(System::Windows::Forms::DataGridView^);
+
+
+};
