@@ -1,7 +1,7 @@
 #pragma once
 using namespace System;
 using namespace std;
-public ref class dish
+public ref class dish //блюдо
 {
 private:
 	String^ name;
@@ -45,7 +45,7 @@ public:
 	}
 };
 
-public ref class food
+public ref class food //список блюд
 {
 	String^ name;
 	array <dish^>^ food_list = gcnew array <dish^>(100);
@@ -63,8 +63,7 @@ public:
 	int sum_cal();
 	//Выбрать все блюда, калорийность которых ниже, чем указанное значение, и подсчитать их стоимость.
 	double sort_cal(int);
-	//Выбрать все ланчи, калорийность которых ниже, чем указанное значение.Подсчитать стоимость
-	double sort_luhch(array <food^>^, int);
+
 	food^ operator =(food^ other);
 	bool operator ==(food^ other);
 
@@ -80,7 +79,7 @@ public:
 
 };
 
-public ref class food_arr
+public ref class food_arr //Список бизнес-ланчей
 {
 	int Count;
 	array <food^>^ lunch_list = gcnew array <food^>(100);
@@ -91,6 +90,10 @@ public:
 	bool Add(food^);
 	bool Del(food^);
 	void View(System::Windows::Forms::DataGridView^);
+	//Выбрать все ланчи, калорийность которых ниже, чем указанное значение.Подсчитать стоимость
+	
+	//Выбрать все ланчи, стоимость которых ниже, чем указанное значение.Подсчитать калорийность.
+
 
 
 };

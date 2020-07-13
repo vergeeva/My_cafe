@@ -169,15 +169,6 @@ double food::sort_cal(int cal)
 	return price_sum;
 }
 
-//¬ыбрать все ланчи, калорийность которых ниже, чем указанное значение.ѕодсчитать стоимость
-double food::sort_luhch(array <food^> ^ lunch, int len)
-{
-	for (int i = 0; i < len; i++)
-	{
-
-	}
-	return 0.0;
-}
 
 food^ food::operator=(food^ other)
 {
