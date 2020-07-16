@@ -30,6 +30,7 @@ dish^ dish::operator=(dish^ other)
 	return this;
 }
 
+
 food::food()
 {
 	len = 0;
