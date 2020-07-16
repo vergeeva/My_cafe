@@ -1,6 +1,7 @@
 #pragma once
 using namespace System;
 using namespace std;
+using namespace System::IO;
 public ref class dish //блюдо
 {
 private:
@@ -40,7 +41,7 @@ public:
 			return price;
 		}
 		void set(double price) {
-			price = price;
+			this->price = price;
 		}
 	}
 };
@@ -63,7 +64,7 @@ public:
 	int sum_cal();
 	//Выбрать все блюда, калорийность которых ниже, чем указанное значение, и подсчитать их стоимость.
 	double sort_cal(int);
-
+	void Load(String^ File_name);
 	food^ operator =(food^ other);
 	bool operator ==(food^ other);
 

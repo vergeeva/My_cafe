@@ -3,8 +3,8 @@
 dish::dish()
 {
 	name = gcnew String("Названия блюда");
-	calorific = 0;
-	price = 0;
+	calorific = 1;
+	price = 1;
 }
 
 bool dish::operator==(dish^ other)
@@ -24,19 +24,18 @@ bool dish::operator<(dish^ other)
 
 dish^ dish::operator=(dish^ other)
 {
-	this->name = other->name;
-	this->calorific = other->calorific;
-	this->price = other->price;
+	this->Name = other->name;
+	this->Cal = other->calorific;
+	this->Price = other->price;
 	return this;
 }
 
 food::food()
 {
-	name = gcnew String("Название ланча");
 	len = 0;
-	for each (dish ^ i in food_list)
+	for (int i = 0; i < 100;i++)
 	{
-		i = gcnew dish();
+		food_list[i] = gcnew dish();
 	}
 }
 
@@ -169,6 +168,19 @@ double food::sort_cal(int cal)
 	return price_sum;
 }
 
+void food::Load(String^ fileName)
+{
+	StreamReader^ SR = gcnew StreamReader(fileName);
+	String^ str = gcnew String("");
+	while (str = SR->ReadLine()) {
+		dish^ p = gcnew dish();
+		p->Name = str->Substring(0, str->IndexOf("$"));
+		p->Cal = Convert::ToInt32(str->Substring(str->IndexOf("$")+1, 3));
+		p->Price = Convert::ToDouble(str->Substring(str->LastIndexOf("$")+1));
+		this->Add(p);
+	}
+}
+
 
 food^ food::operator=(food^ other)
 {
@@ -193,9 +205,9 @@ bool food::operator==(food^ other)
 food_arr::food_arr()
 {
 	Count = 0;
-	for each (food^ i in lunch_list)
+	for (int i = 0; i < Count; i++)
 	{
-		i = gcnew food();
+		lunch_list[i] = gcnew food();
 	}
 }
 

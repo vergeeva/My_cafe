@@ -1,4 +1,5 @@
 #pragma once
+#include "food.h"
 
 namespace Mycafe {
 
@@ -14,6 +15,7 @@ namespace Mycafe {
 	/// </summary>
 	public ref class My_Lunch : public System::Windows::Forms::Form
 	{
+
 	public:
 		My_Lunch(void)
 		{
@@ -21,6 +23,7 @@ namespace Mycafe {
 			//
 			//TODO: добавьте код конструктора
 			//
+			list = gcnew food();
 		}
 
 	protected:
@@ -33,7 +36,8 @@ namespace Mycafe {
 			{
 				delete components;
 			}
-		}
+		};
+	food ^list;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
@@ -150,7 +154,7 @@ namespace Mycafe {
 				this->Column4,
 					this->Column5
 			});
-			this->dataGridView2->Location = System::Drawing::Point(498, 43);
+			this->dataGridView2->Location = System::Drawing::Point(514, 70);
 			this->dataGridView2->Name = L"dataGridView2";
 			this->dataGridView2->RowTemplate->Height = 24;
 			this->dataGridView2->Size = System::Drawing::Size(290, 259);
@@ -194,6 +198,7 @@ namespace Mycafe {
 			this->Name = L"My_Lunch";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"My_Lunch";
+			this->Load += gcnew System::EventHandler(this, &My_Lunch::My_Lunch_Load);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->EndInit();
 			this->ResumeLayout(false);
@@ -204,5 +209,9 @@ namespace Mycafe {
 	private: System::Void Button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
+private: System::Void My_Lunch_Load(System::Object^ sender, System::EventArgs^ e) {
+	list->Load("Основное меню.txt");
+	list->View(dataGridView1);
+}
 };
 }
