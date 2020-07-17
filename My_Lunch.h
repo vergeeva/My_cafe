@@ -23,7 +23,7 @@ namespace Mycafe {
 			//
 			//TODO: добавьте код конструктора
 			//
-			list = gcnew food();
+			list = gcnew food_arr();
 		}
 
 	protected:
@@ -37,7 +37,7 @@ namespace Mycafe {
 				delete components;
 			}
 		};
-	food ^list;
+	food_arr ^list;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
@@ -48,6 +48,7 @@ namespace Mycafe {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column4;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column5;
 	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button2;
 
 
 
@@ -84,6 +85,7 @@ namespace Mycafe {
 			this->Column4 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->Column5 = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button2 = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView1))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGridView2))->BeginInit();
 			this->SuspendLayout();
@@ -177,7 +179,7 @@ namespace Mycafe {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(669, 469);
+			this->button1->Location = System::Drawing::Point(721, 469);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(118, 27);
 			this->button1->TabIndex = 5;
@@ -185,11 +187,21 @@ namespace Mycafe {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &My_Lunch::Button1_Click);
 			// 
+			// button2
+			// 
+			this->button2->Location = System::Drawing::Point(578, 469);
+			this->button2->Name = L"button2";
+			this->button2->Size = System::Drawing::Size(126, 27);
+			this->button2->TabIndex = 6;
+			this->button2->Text = L"Добавить в заказ";
+			this->button2->UseVisualStyleBackColor = true;
+			// 
 			// My_Lunch
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(816, 508);
+			this->ClientSize = System::Drawing::Size(851, 508);
+			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->dataGridView2);
 			this->Controls->Add(this->label3);
@@ -210,7 +222,8 @@ namespace Mycafe {
 		this->Close();
 	}
 private: System::Void My_Lunch_Load(System::Object^ sender, System::EventArgs^ e) {
-
+	list->Load("Бизнес-ланчи.txt", "Названия бизнес-ланчей.txt");
+	list->View(dataGridView1);
 }
 };
 }

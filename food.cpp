@@ -7,6 +7,11 @@ dish::dish()
 	price = 1;
 }
 
+dish::~dish()
+{
+	delete name;
+}
+
 bool dish::operator==(dish^ other)
 {
 	return this->name == other->name && this->calorific == other->calorific && this->price == other->price;
@@ -37,6 +42,15 @@ food::food()
 	for (int i = 0; i < 100;i++)
 	{
 		food_list[i] = gcnew dish();
+	}
+}
+
+food::~food()
+{
+	len = 0;
+	for (int i = 0; i < 100; i++)
+	{
+		delete food_list[i];
 	}
 }
 
@@ -185,9 +199,9 @@ void food::Load(String^ fileName)
 
 food^ food::operator=(food^ other)
 {
-	for (int i = 0; i > len; i++)
+	for (int i = 0; i < other->len; i++)
 	{
-		this->food_list[i] = other->food_list[i];
+		this->food_list[i]->operator=(other->food_list[i]);
 	}
 	return this;
 }
@@ -273,19 +287,30 @@ void food_arr::View(System::Windows::Forms::DataGridView^ DGV)
 	}
 }
 
-void food_arr::Load(String^ fileName)
+void food_arr::Load(String^ fileName, String^ fileName1)
 {
+	food^ f = gcnew food();
+	dish^ p = gcnew dish();
+
 	StreamReader^ SR = gcnew StreamReader(fileName);
 	String^ str = gcnew String("");
-	while (str = SR->ReadLine()) {
-		food ^ f = gcnew food();
-		dish^ p = gcnew dish();
-		f->Name = SR->ReadLine();
-		p->Name = str->Substring(0, str->IndexOf("$"));
-		p->Cal = Convert::ToInt32(str->Substring(str->IndexOf("$") + 1, 3));
-		p->Price = Convert::ToDouble(str->Substring(str->LastIndexOf("$") + 1));
-		f->Add(p);
-		this->Add(f);
+
+	f->Name = SR->ReadLine();
+	while (str = SR->ReadLine())
+	{
+		if (str == "") 
+		{ 
+		this->Add(f); 
+		delete f;
+		f->Name = SR->ReadLine(); 
+		}
+		else
+		{
+			p->Name = str->Substring(0, str->IndexOf("$"));
+			p->Cal = Convert::ToInt32(str->Substring(str->IndexOf("$") + 1, 3));
+			p->Price = Convert::ToDouble(str->Substring(str->LastIndexOf("$") + 1));
+			f->Add(p);
+		}
 	}
 }
 

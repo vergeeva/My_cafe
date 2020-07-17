@@ -11,6 +11,7 @@ private:
 
 public:
 	dish();
+	~dish();
 	bool operator ==(dish ^ other);
 	dish^ operator =(dish^ other);
 	bool operator >(dish^ other);
@@ -53,6 +54,7 @@ public ref class food //список блюд
 	int len;
 public:
 	food();
+	~food();
 	bool empty();
 	bool full();
 	bool Add(dish^);
@@ -91,7 +93,7 @@ public:
 	bool Add(food^);
 	bool Del(food^);
 	void View(System::Windows::Forms::DataGridView^);
-	void Load(String^);
+	void Load(String^,String^);
 	//¬ыбрать все ланчи, калорийность которых ниже, чем указанное значение.ѕодсчитать стоимость
 	
 	//¬ыбрать все ланчи, стоимость которых ниже, чем указанное значение.ѕодсчитать калорийность.

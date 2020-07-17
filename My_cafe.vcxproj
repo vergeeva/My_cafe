@@ -149,6 +149,7 @@
   <ItemGroup>
     <Text Include="Бизнес-ланчи.txt" />
     <Text Include="Заказ.txt" />
+    <Text Include="Названия бизнес-ланчей.txt" />
     <Text Include="Основное меню.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
