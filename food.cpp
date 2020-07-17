@@ -206,7 +206,7 @@ bool food::operator==(food^ other)
 food_arr::food_arr()
 {
 	Count = 0;
-	for (int i = 0; i < Count; i++)
+	for (int i = 0; i < 100; i++)
 	{
 		lunch_list[i] = gcnew food();
 	}
@@ -270,6 +270,22 @@ void food_arr::View(System::Windows::Forms::DataGridView^ DGV)
 			DGV->Rows[i]->Cells[1]->Value = this->lunch_list[i]->sum_cal();
 			DGV->Rows[i]->Cells[2]->Value = this->lunch_list[i]->sum_price()*0.8;
 		}
+	}
+}
+
+void food_arr::Load(String^ fileName)
+{
+	StreamReader^ SR = gcnew StreamReader(fileName);
+	String^ str = gcnew String("");
+	while (str = SR->ReadLine()) {
+		food ^ f = gcnew food();
+		dish^ p = gcnew dish();
+		f->Name = SR->ReadLine();
+		p->Name = str->Substring(0, str->IndexOf("$"));
+		p->Cal = Convert::ToInt32(str->Substring(str->IndexOf("$") + 1, 3));
+		p->Price = Convert::ToDouble(str->Substring(str->LastIndexOf("$") + 1));
+		f->Add(p);
+		this->Add(f);
 	}
 }
 

@@ -119,11 +119,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="food.cpp" />
+    <ClCompile Include="Key_Menu.cpp" />
     <ClCompile Include="menu.cpp" />
     <ClCompile Include="My_Lunch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="food.h" />
+    <ClInclude Include="Key_Menu.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="menu.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -132,6 +136,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Key_Menu.resx">
+      <DependentUpon>Key_Menu.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="menu.resx">
       <DependentUpon>menu.h</DependentUpon>
     </EmbeddedResource>

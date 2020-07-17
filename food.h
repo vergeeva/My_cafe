@@ -64,7 +64,7 @@ public:
 	int sum_cal();
 	//Выбрать все блюда, калорийность которых ниже, чем указанное значение, и подсчитать их стоимость.
 	double sort_cal(int);
-	void Load(String^ File_name);
+	void Load(String^);
 	food^ operator =(food^ other);
 	bool operator ==(food^ other);
 
@@ -91,6 +91,7 @@ public:
 	bool Add(food^);
 	bool Del(food^);
 	void View(System::Windows::Forms::DataGridView^);
+	void Load(String^);
 	//Выбрать все ланчи, калорийность которых ниже, чем указанное значение.Подсчитать стоимость
 	
 	//Выбрать все ланчи, стоимость которых ниже, чем указанное значение.Подсчитать калорийность.

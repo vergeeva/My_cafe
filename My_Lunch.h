@@ -210,8 +210,7 @@ namespace Mycafe {
 		this->Close();
 	}
 private: System::Void My_Lunch_Load(System::Object^ sender, System::EventArgs^ e) {
-	list->Load("Основное меню.txt");
-	list->View(dataGridView1);
+
 }
 };
 }

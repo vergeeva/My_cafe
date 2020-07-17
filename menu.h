@@ -1,6 +1,7 @@
 #pragma once
 #include "food.h"
 #include "My_Lunch.h"
+#include "Key_Menu.h"
 
 namespace Mycafe {
 
@@ -75,10 +76,9 @@ namespace Mycafe {
 				static_cast<System::Byte>(0)));
 			this->label1->ForeColor = System::Drawing::Color::SaddleBrown;
 			this->label1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"label1.Image")));
-			this->label1->Location = System::Drawing::Point(82, 40);
-			this->label1->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
+			this->label1->Location = System::Drawing::Point(109, 49);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(122, 43);
+			this->label1->Size = System::Drawing::Size(154, 55);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Меню";
 			// 
@@ -89,10 +89,10 @@ namespace Mycafe {
 			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button1->ForeColor = System::Drawing::SystemColors::Control;
-			this->button1->Location = System::Drawing::Point(34, 94);
-			this->button1->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button1->Location = System::Drawing::Point(45, 116);
+			this->button1->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(210, 34);
+			this->button1->Size = System::Drawing::Size(280, 42);
 			this->button1->TabIndex = 1;
 			this->button1->Text = L"Бизнес-ланч";
 			this->button1->UseVisualStyleBackColor = false;
@@ -105,10 +105,10 @@ namespace Mycafe {
 			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button2->ForeColor = System::Drawing::SystemColors::Control;
-			this->button2->Location = System::Drawing::Point(34, 133);
-			this->button2->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button2->Location = System::Drawing::Point(45, 164);
+			this->button2->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(210, 34);
+			this->button2->Size = System::Drawing::Size(280, 42);
 			this->button2->TabIndex = 2;
 			this->button2->Text = L"Наши акции";
 			this->button2->UseVisualStyleBackColor = false;
@@ -120,13 +120,14 @@ namespace Mycafe {
 			this->button3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button3->ForeColor = System::Drawing::SystemColors::Control;
-			this->button3->Location = System::Drawing::Point(34, 172);
-			this->button3->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button3->Location = System::Drawing::Point(45, 212);
+			this->button3->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(210, 34);
+			this->button3->Size = System::Drawing::Size(280, 42);
 			this->button3->TabIndex = 3;
 			this->button3->Text = L"Основное меню";
 			this->button3->UseVisualStyleBackColor = false;
+			this->button3->Click += gcnew System::EventHandler(this, &menu::button3_Click);
 			// 
 			// button4
 			// 
@@ -135,12 +136,12 @@ namespace Mycafe {
 			this->button4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button4->ForeColor = System::Drawing::SystemColors::Control;
-			this->button4->Location = System::Drawing::Point(34, 211);
-			this->button4->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button4->Location = System::Drawing::Point(45, 260);
+			this->button4->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(210, 34);
+			this->button4->Size = System::Drawing::Size(280, 42);
 			this->button4->TabIndex = 4;
-			this->button4->Text = L"Сделать заказ";
+			this->button4->Text = L"Оформить заказ";
 			this->button4->UseVisualStyleBackColor = false;
 			// 
 			// button5
@@ -150,21 +151,21 @@ namespace Mycafe {
 			this->button5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 7.8F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->button5->ForeColor = System::Drawing::SystemColors::Control;
-			this->button5->Location = System::Drawing::Point(34, 250);
-			this->button5->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->button5->Location = System::Drawing::Point(45, 308);
+			this->button5->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(210, 34);
+			this->button5->Size = System::Drawing::Size(280, 42);
 			this->button5->TabIndex = 5;
 			this->button5->Text = L"О нас";
 			this->button5->UseVisualStyleBackColor = false;
 			// 
 			// menu
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->ClientSize = System::Drawing::Size(280, 357);
+			this->ClientSize = System::Drawing::Size(373, 439);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->button3);
@@ -173,7 +174,7 @@ namespace Mycafe {
 			this->Controls->Add(this->label1);
 			this->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Margin = System::Windows::Forms::Padding(2, 2, 2, 2);
+			this->Margin = System::Windows::Forms::Padding(3, 2, 3, 2);
 			this->Name = L"menu";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Меню";
@@ -186,5 +187,9 @@ namespace Mycafe {
 		Form^ L = gcnew My_Lunch();
 		L->ShowDialog();
 	}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	Form^ L = gcnew Key_Menu();
+	L->ShowDialog();
+}
 };
 }
