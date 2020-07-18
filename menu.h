@@ -2,6 +2,7 @@
 #include "food.h"
 #include "My_Lunch.h"
 #include "Key_Menu.h"
+#include "My_order.h"
 
 namespace Mycafe {
 
@@ -143,6 +144,7 @@ namespace Mycafe {
 			this->button4->TabIndex = 4;
 			this->button4->Text = L"ќформить заказ";
 			this->button4->UseVisualStyleBackColor = false;
+			this->button4->Click += gcnew System::EventHandler(this, &menu::button4_Click);
 			// 
 			// button5
 			// 
@@ -189,6 +191,10 @@ namespace Mycafe {
 	}
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	Form^ L = gcnew Key_Menu();
+	L->ShowDialog();
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	Form^ L = gcnew My_order();
 	L->ShowDialog();
 }
 };
