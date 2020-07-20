@@ -55,9 +55,6 @@
     <Text Include="Бизнес-ланчи.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>
-    <Text Include="Названия бизнес-ланчей.txt">
-      <Filter>Файлы ресурсов</Filter>
-    </Text>
     <Text Include="Заказ_блюда.txt">
       <Filter>Файлы ресурсов</Filter>
     </Text>

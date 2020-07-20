@@ -64,11 +64,19 @@ public:
 	food^ most_expensive();
 	double sum_price();
 	int sum_cal();
+	food^ sort_cal(int cal);
 	//Выбрать все блюда, калорийность которых ниже, чем указанное значение, и подсчитать их стоимость.
-	double sort_cal(int);
 	void Load(String^);
+	void Infile(String^);
 	food^ operator =(food^ other);
 	bool operator ==(food^ other);
+
+	property array <dish^>^ Food_list
+	{
+		array <dish^>^ get() {
+			return food_list;
+		}
+	}
 
 	property String^ Name
 	{
@@ -93,11 +101,20 @@ public:
 	bool Add(food^);
 	bool Del(food^);
 	void View(System::Windows::Forms::DataGridView^);
-	void Load(String^,String^);
-	//Выбрать все ланчи, калорийность которых ниже, чем указанное значение.Подсчитать стоимость
-	
-	//Выбрать все ланчи, стоимость которых ниже, чем указанное значение.Подсчитать калорийность.
+	void Load(String^);
 
+	//4.	Выбрать все ланчи, калорийность которых ниже, чем указанное значение.Подсчитать стоимость.
+	property array <food^>^ Lunch_list
+	{
+		array <food^>^ get() {
+			return lunch_list;
+		}
+	}
+	food_arr^ food_arr::sort_cal(int cal);
+	//5.	Выбрать все ланчи, стоимость которых ниже, чем указанное значение.Подсчитать калорийность.
+	food_arr^ sort_price(double price);
+	int sum_cal();
+	double sum_price();
 
 
 };

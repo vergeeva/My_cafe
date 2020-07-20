@@ -1,8 +1,8 @@
-#include "food.h"
+п»ї#include "food.h"
 
 dish::dish()
 {
-	name = gcnew String("Названия блюда");
+	name = gcnew String("РќР°Р·РІР°РЅРёСЏ Р±Р»СЋРґР°");
 	calorific = 1;
 	price = 1;
 }
@@ -117,15 +117,18 @@ void food::View(System::Windows::Forms::DataGridView^ DGV)
 
 food^ food::fattest()
 {
-	dish ^temp = gcnew dish(); // временная переменная для обмена элементов местами
-// Сортировка массива пузырьком
-	for (int i = 0; i < len - 1; i++) {
-		for (int j = 0; j < len - i - 1; j++) {
-			if (food_list[j] > food_list[j + 1]) {
-				// меняем элементы местами
-				temp = food_list[j];
-				food_list[j] = food_list[j + 1];
-				food_list[j + 1] = temp;
+	dish ^temp = gcnew dish(); // РІСЂРµРјРµРЅРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ РѕР±РјРµРЅР° СЌР»РµРјРµРЅС‚РѕРІ РјРµСЃС‚Р°РјРё
+// РЎРѕСЂС‚РёСЂРѕРІРєР° РјР°СЃСЃРёРІР° РїСѓР·С‹СЂСЊРєРѕРј
+	for (int i = 0; i < len - 1; i++) 
+	{
+		for (int j = 0; j < len - i - 1; j++) 
+		{
+			if (food_list[j] > food_list[j + 1]) 
+			{
+				// РјРµРЅСЏРµРј СЌР»РµРјРµРЅС‚С‹ РјРµСЃС‚Р°РјРё
+				temp->operator=(food_list[j]);
+				food_list[j]->operator=(food_list[j + 1]);
+				food_list[j + 1]->operator=(temp);
 			}
 		}
 	}
@@ -134,12 +137,12 @@ food^ food::fattest()
 
 food^ food::most_expensive()
 {
-	dish^ temp = gcnew dish(); // временная переменная для обмена элементов местами
-// Сортировка массива пузырьком
+	dish^ temp = gcnew dish(); // РІСЂРµРјРµРЅРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ РѕР±РјРµРЅР° СЌР»РµРјРµРЅС‚РѕРІ РјРµСЃС‚Р°РјРё
+// РЎРѕСЂС‚РёСЂРѕРІРєР° РјР°СЃСЃРёРІР° РїСѓР·С‹СЂСЊРєРѕРј
 	for (int i = 0; i < len - 1; i++) {
 		for (int j = 0; j < len - i - 1; j++) {
 			if (food_list[j+1] < food_list[j]) {
-				// меняем элементы местами
+				// РјРµРЅСЏРµРј СЌР»РµРјРµРЅС‚С‹ РјРµСЃС‚Р°РјРё
 				temp = food_list[j];
 				food_list[j] = food_list[j + 1];
 				food_list[j + 1] = temp;
@@ -161,7 +164,7 @@ double food::sum_price()
 
 int food::sum_cal()
 {
-	double sum_cal = 0;
+	int sum_cal = 0;
 	for (int i = 0; i < len; i++)
 	{
 		sum_cal += food_list[i]->Cal;
@@ -169,18 +172,17 @@ int food::sum_cal()
 	return sum_cal;
 }
 
-double food::sort_cal(int cal)
+food^ food::sort_cal(int cal)
 {
-	double price_sum = 0;
+	food^ g = gcnew food();
 	for (int i = 0; i < len; i++)
 	{
 		if (food_list[i]->Cal < cal)
 		{
-			price_sum += food_list[i]->Cal;
+			g->Add(food_list[i]);
 		}
 	}
-
-	return price_sum;
+	return g;
 }
 
 void food::Load(String^ fileName)
@@ -194,14 +196,27 @@ void food::Load(String^ fileName)
 		p->Price = Convert::ToDouble(str->Substring(str->LastIndexOf("$")+1));
 		this->Add(p);
 	}
+	SR->Close();
+}
+
+void food::Infile(String^ fileName)
+{
+	StreamWriter^ My_SW = gcnew StreamWriter(fileName); // Г‡Г ГЇГЁГ±Гј ГўГ±ГҐГЈГ® ГІГҐГЄГ±ГІГ .
+	for (int i = 0; i < len; i++)
+	{
+		String^ Line = gcnew String("");
+		Line = food_list[i]->Name + "$" + food_list[i]->Cal +"$"+ food_list[i]->Price + "\n";
+		My_SW->Write(Line);
+	}
+	My_SW->Close();
 }
 
 
 food^ food::operator=(food^ other)
 {
-	for (int i = 0; i < other->len; i++)
+	for (int i = 0; i < len; i++)
 	{
-		this->food_list[i]->operator=(other->food_list[i]);
+		this->food_list[i]->operator= (other->food_list[i]);
 	}
 	return this;
 }
@@ -240,7 +255,7 @@ bool food_arr::Add(food^ object)
 {
 	if (!full())
 	{
-		this->lunch_list[this->Count]->operator=(object);
+		this->lunch_list[Count] = object;
 		this->Count++;
 		return 1;
 	}
@@ -287,21 +302,20 @@ void food_arr::View(System::Windows::Forms::DataGridView^ DGV)
 	}
 }
 
-void food_arr::Load(String^ fileName, String^ fileName1)
+void food_arr::Load(String^ fileName)
 {
 	food^ f = gcnew food();
 	dish^ p = gcnew dish();
 
 	StreamReader^ SR = gcnew StreamReader(fileName);
 	String^ str = gcnew String("");
-
 	f->Name = SR->ReadLine();
 	while (str = SR->ReadLine())
 	{
 		if (str == "") 
 		{ 
 		this->Add(f); 
-		delete f;
+		f = gcnew food();
 		f->Name = SR->ReadLine(); 
 		}
 		else
@@ -312,5 +326,52 @@ void food_arr::Load(String^ fileName, String^ fileName1)
 			f->Add(p);
 		}
 	}
+	this->Add(f);
+	SR->Close();
+}
+food_arr^ food_arr::sort_cal(int cal)
+{
+	food_arr^ g = gcnew food_arr();
+	for (int i = 0; i < Count; i++)
+	{
+		if (lunch_list[i]->sum_cal() < cal)
+		{
+			g->Add(lunch_list[i]);
+		}
+	}
+	return g;
+}
+
+food_arr^ food_arr::sort_price(double price)
+{
+	food_arr^ g = gcnew food_arr();
+	for (int i = 0; i < Count; i++)
+	{
+		if (lunch_list[i]->sum_price()*0.8 < price)
+		{
+			g->Add(lunch_list[i]);
+		}
+	}
+	return g;
+}
+
+int food_arr::sum_cal()
+{
+	int sum_cal = 0;
+	for (int i = 0; i < Count; i++)
+	{
+		sum_cal += lunch_list[i]->sum_cal();
+	}
+	return sum_cal;
+}
+
+double food_arr::sum_price()
+{
+	double sum_price = 0;
+	for (int i = 0; i < Count; i++)
+	{
+		sum_price += lunch_list[i]->sum_price()*0.8;
+	}
+	return sum_price;
 }
 
