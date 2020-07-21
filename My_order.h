@@ -174,6 +174,7 @@ namespace Mycafe {
 			this->dataGridView2->RowTemplate->Height = 24;
 			this->dataGridView2->Size = System::Drawing::Size(407, 227);
 			this->dataGridView2->TabIndex = 11;
+			this->dataGridView2->CellContentDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &My_order::DataGridView2_CellContentDoubleClick);
 			// 
 			// dataGridViewTextBoxColumn1
 			// 
@@ -243,6 +244,7 @@ namespace Mycafe {
 			this->dataGridView1->RowTemplate->Height = 24;
 			this->dataGridView1->Size = System::Drawing::Size(407, 227);
 			this->dataGridView1->TabIndex = 3;
+			this->dataGridView1->CellContentDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &My_order::DataGridView1_CellContentDoubleClick);
 			// 
 			// label2
 			// 
@@ -349,6 +351,40 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 
 private: System::Void Button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	MessageBox::Show("Чтобы удалить что-то из заказа, нажмите два раза на элемент в списке", "Помощь");
+}
+private: System::Void DataGridView2_CellContentDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	int i = e->RowIndex;
+	auto result = MessageBox::Show(
+		"Вы действительно хотите удалить блюдо из списка?",
+		"Подтвердите удаление",
+		MessageBoxButtons::YesNo,
+		MessageBoxIcon::Question);
+	if (result == System::Windows::Forms::DialogResult::Yes) 
+	{
+		dish_order->Del(dish_order->Food_list[i]);
+		dish_order->Infile("Заказ_блюда.txt");
+		dish_order->View(dataGridView2);
+		textBox1->Text = Convert::ToString(dish_order->sum_price());
+		this->textBox2->Text = Convert::ToString(lunch_order->sum_price() + dish_order->sum_price());
+	}
+}
+
+private: System::Void DataGridView1_CellContentDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	int i = e->RowIndex;
+	auto result = MessageBox::Show(
+		"Вы действительно хотите удалить блюдо из списка?",
+		"Подтвердите удаление",
+		MessageBoxButtons::YesNo,
+		MessageBoxIcon::Question);
+
+	if (result == System::Windows::Forms::DialogResult::Yes)
+	{
+		lunch_order->Del(lunch_order->Lunch_list[i]);
+		lunch_order->Infile("Заказ_ланчи.txt");
+		lunch_order->View(dataGridView1);
+		textBox3->Text = Convert::ToString(lunch_order->sum_price());
+		this->textBox2->Text = Convert::ToString(lunch_order->sum_price() + dish_order->sum_price());
+	}
 }
 };
 }
