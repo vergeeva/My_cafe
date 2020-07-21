@@ -78,6 +78,14 @@ public:
 		}
 	}
 
+	property int Len
+	{
+		int get() 
+		{
+			return len;
+		}
+	}
+
 	property String^ Name
 	{
 		String^ get() {
@@ -102,6 +110,7 @@ public:
 	bool Del(food^);
 	void View(System::Windows::Forms::DataGridView^);
 	void Load(String^);
+	void Infile(String^);
 
 	//4.	¬ыбрать все ланчи, калорийность которых ниже, чем указанное значение.ѕодсчитать стоимость.
 	property array <food^>^ Lunch_list

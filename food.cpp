@@ -201,7 +201,7 @@ void food::Load(String^ fileName)
 
 void food::Infile(String^ fileName)
 {
-	StreamWriter^ My_SW = gcnew StreamWriter(fileName); // Çàïèñü âñåãî òåêñòà.
+	StreamWriter^ My_SW = gcnew StreamWriter(fileName);
 	for (int i = 0; i < len; i++)
 	{
 		String^ Line = gcnew String("");
@@ -329,6 +329,27 @@ void food_arr::Load(String^ fileName)
 	this->Add(f);
 	SR->Close();
 }
+
+void food_arr::Infile(String^ fileName)
+{
+	StreamWriter^ My_SW = gcnew StreamWriter(fileName);
+	String^ space = gcnew String("\n"); ;
+	for (int i = 0; i < Count; i++)
+	{
+		String^ Line = gcnew String("");
+		Line = lunch_list[i]->Name + "\n";
+		My_SW->Write(Line);
+		for (int j = 0; j < lunch_list[i]->Len; j++)
+		{
+			String^ Line_1 = gcnew String("");
+			Line_1 = lunch_list[i]->Food_list[j]->Name + "$" + lunch_list[i]->Food_list[j]->Cal + "$" + lunch_list[i]->Food_list[j]->Price + "\n";
+			My_SW->Write(Line_1);
+		}
+		if (Count>1) My_SW->Write(space);
+	}
+	My_SW->Close();
+}
+
 food_arr^ food_arr::sort_cal(int cal)
 {
 	food_arr^ g = gcnew food_arr();

@@ -24,6 +24,7 @@ namespace Mycafe {
 			//TODO: добавьте код конструктора
 			//
 			list = gcnew food_arr();
+			list_order = gcnew food_arr();
 		}
 
 	protected:
@@ -37,7 +38,8 @@ namespace Mycafe {
 				delete components;
 			}
 		};
-	food_arr ^list;
+	food_arr^ list;
+	food_arr^ list_order;
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ Column1;
@@ -124,10 +126,9 @@ namespace Mycafe {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(16, 27);
-			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label1->Location = System::Drawing::Point(12, 22);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(197, 19);
+			this->label1->Size = System::Drawing::Size(152, 16);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Список бизнес-ланчей";
 			// 
@@ -138,14 +139,14 @@ namespace Mycafe {
 				this->Column1,
 					this->Column2, this->Column3
 			});
-			this->dataGridView1->Location = System::Drawing::Point(20, 53);
-			this->dataGridView1->Margin = System::Windows::Forms::Padding(4);
+			this->dataGridView1->Location = System::Drawing::Point(15, 43);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->RowTemplate->Height = 24;
-			this->dataGridView1->Size = System::Drawing::Size(561, 411);
+			this->dataGridView1->Size = System::Drawing::Size(421, 334);
 			this->dataGridView1->TabIndex = 1;
 			this->dataGridView1->CellContentClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &My_Lunch::dataGridView1_CellContentClick);
+			this->dataGridView1->CellContentDoubleClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &My_Lunch::DataGridView1_CellContentDoubleClick);
 			// 
 			// Column1
 			// 
@@ -179,10 +180,9 @@ namespace Mycafe {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Arial", 9.75F, static_cast<System::Drawing::FontStyle>((System::Drawing::FontStyle::Bold | System::Drawing::FontStyle::Italic)),
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->label3->Location = System::Drawing::Point(640, 27);
-			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label3->Location = System::Drawing::Point(480, 22);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(346, 19);
+			this->label3->Size = System::Drawing::Size(271, 16);
 			this->label3->TabIndex = 3;
 			this->label3->Text = L"Что входит в выбранный бизнес-ланч:";
 			// 
@@ -193,12 +193,11 @@ namespace Mycafe {
 				this->Column4,
 					this->Column6, this->Column5
 			});
-			this->dataGridView2->Location = System::Drawing::Point(601, 53);
-			this->dataGridView2->Margin = System::Windows::Forms::Padding(4);
+			this->dataGridView2->Location = System::Drawing::Point(451, 43);
 			this->dataGridView2->Name = L"dataGridView2";
 			this->dataGridView2->RowHeadersWidth = 51;
 			this->dataGridView2->RowTemplate->Height = 24;
-			this->dataGridView2->Size = System::Drawing::Size(621, 319);
+			this->dataGridView2->Size = System::Drawing::Size(466, 259);
 			this->dataGridView2->TabIndex = 4;
 			// 
 			// Column4
@@ -230,10 +229,9 @@ namespace Mycafe {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(950, 516);
-			this->button1->Margin = System::Windows::Forms::Padding(4);
+			this->button1->Location = System::Drawing::Point(712, 419);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(272, 28);
+			this->button1->Size = System::Drawing::Size(204, 23);
 			this->button1->TabIndex = 5;
 			this->button1->Text = L"Закрыть";
 			this->button1->UseVisualStyleBackColor = true;
@@ -241,9 +239,10 @@ namespace Mycafe {
 			// 
 			// button3
 			// 
-			this->button3->Location = System::Drawing::Point(601, 424);
+			this->button3->Location = System::Drawing::Point(451, 344);
+			this->button3->Margin = System::Windows::Forms::Padding(2);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(272, 25);
+			this->button3->Size = System::Drawing::Size(204, 20);
 			this->button3->TabIndex = 7;
 			this->button3->Text = L"Выбрать подходящие ланчи";
 			this->button3->UseVisualStyleBackColor = true;
@@ -251,9 +250,10 @@ namespace Mycafe {
 			// 
 			// button4
 			// 
-			this->button4->Location = System::Drawing::Point(948, 424);
+			this->button4->Location = System::Drawing::Point(711, 344);
+			this->button4->Margin = System::Windows::Forms::Padding(2);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(273, 25);
+			this->button4->Size = System::Drawing::Size(205, 20);
 			this->button4->TabIndex = 8;
 			this->button4->Text = L"Выбрать подходящие ланчи";
 			this->button4->UseVisualStyleBackColor = true;
@@ -261,41 +261,46 @@ namespace Mycafe {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(600, 396);
+			this->textBox1->Location = System::Drawing::Point(450, 322);
+			this->textBox1->Margin = System::Windows::Forms::Padding(2);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(272, 22);
+			this->textBox1->Size = System::Drawing::Size(205, 22);
 			this->textBox1->TabIndex = 9;
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(949, 396);
+			this->textBox2->Location = System::Drawing::Point(712, 322);
+			this->textBox2->Margin = System::Windows::Forms::Padding(2);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(272, 22);
+			this->textBox2->Size = System::Drawing::Size(205, 22);
 			this->textBox2->TabIndex = 10;
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(598, 376);
+			this->label2->Location = System::Drawing::Point(448, 306);
+			this->label2->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(171, 17);
+			this->label2->Size = System::Drawing::Size(138, 13);
 			this->label2->TabIndex = 11;
 			this->label2->Text = L"Введите каллорийность:";
 			// 
 			// label4
 			// 
 			this->label4->AutoSize = true;
-			this->label4->Location = System::Drawing::Point(946, 376);
+			this->label4->Location = System::Drawing::Point(710, 306);
+			this->label4->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(139, 17);
+			this->label4->Size = System::Drawing::Size(111, 13);
 			this->label4->TabIndex = 12;
 			this->label4->Text = L"Введите стоимость:";
 			// 
 			// button5
 			// 
-			this->button5->Location = System::Drawing::Point(600, 516);
+			this->button5->Location = System::Drawing::Point(450, 419);
+			this->button5->Margin = System::Windows::Forms::Padding(2);
 			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(273, 28);
+			this->button5->Size = System::Drawing::Size(205, 23);
 			this->button5->TabIndex = 13;
 			this->button5->Text = L"Сбросить сортировку";
 			this->button5->UseVisualStyleBackColor = true;
@@ -304,42 +309,46 @@ namespace Mycafe {
 			// textBox3
 			// 
 			this->textBox3->Enabled = false;
-			this->textBox3->Location = System::Drawing::Point(601, 482);
+			this->textBox3->Location = System::Drawing::Point(451, 392);
+			this->textBox3->Margin = System::Windows::Forms::Padding(2);
 			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(272, 22);
+			this->textBox3->Size = System::Drawing::Size(205, 22);
 			this->textBox3->TabIndex = 14;
 			// 
 			// textBox4
 			// 
 			this->textBox4->Enabled = false;
-			this->textBox4->Location = System::Drawing::Point(949, 482);
+			this->textBox4->Location = System::Drawing::Point(712, 392);
+			this->textBox4->Margin = System::Windows::Forms::Padding(2);
 			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(272, 22);
+			this->textBox4->Size = System::Drawing::Size(205, 22);
 			this->textBox4->TabIndex = 15;
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(598, 462);
+			this->label5->Location = System::Drawing::Point(448, 375);
+			this->label5->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(126, 17);
+			this->label5->Size = System::Drawing::Size(101, 13);
 			this->label5->TabIndex = 16;
 			this->label5->Text = L"Общая стоимость";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(947, 462);
+			this->label6->Location = System::Drawing::Point(710, 375);
+			this->label6->Margin = System::Windows::Forms::Padding(2, 0, 2, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(158, 17);
+			this->label6->Size = System::Drawing::Size(128, 13);
 			this->label6->TabIndex = 17;
 			this->label6->Text = L"Общая каллорийность";
 			// 
 			// My_Lunch
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
+			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(1244, 568);
+			this->ClientSize = System::Drawing::Size(933, 462);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
 			this->Controls->Add(this->textBox4);
@@ -357,7 +366,6 @@ namespace Mycafe {
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->label1);
 			this->Icon = (cli::safe_cast<System::Drawing::Icon^>(resources->GetObject(L"$this.Icon")));
-			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"My_Lunch";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Бизнес-ланчи";
@@ -401,5 +409,13 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 		textBox4->Text = Convert::ToString(g->sum_cal());
 	}
 }
+
+private: System::Void DataGridView1_CellContentDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	int i = e->RowIndex;
+	list_order->Add(list->Lunch_list[i]);
+	list_order->Infile("Заказ_ланчи.txt");
+	MessageBox::Show("Бизнес-ланч успешно добавлено в заказ", "Сообщение о добавлении");
+}
+
 };
 }
