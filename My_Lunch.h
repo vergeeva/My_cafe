@@ -348,6 +348,8 @@ namespace Mycafe {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
+			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->ClientSize = System::Drawing::Size(933, 462);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label5);
@@ -390,6 +392,9 @@ private: System::Void dataGridView1_CellContentClick(System::Object^ sender, Sys
 
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	list->View(dataGridView1);
+	textBox3->Text = "";
+	textBox4->Text = "";
+
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	if (this->textBox1->Text != "")

@@ -192,7 +192,7 @@ void food::Load(String^ fileName)
 	while (str = SR->ReadLine()) {
 		dish^ p = gcnew dish();
 		p->Name = str->Substring(0, str->IndexOf("$"));
-		p->Cal = Convert::ToInt32(str->Substring(str->IndexOf("$")+1, 3));
+		p->Cal = Convert::ToInt32(str->Substring(str->IndexOf("$") + 1, 3));
 		p->Price = Convert::ToDouble(str->Substring(str->LastIndexOf("$")+1));
 		this->Add(p);
 	}
@@ -205,7 +205,25 @@ void food::Infile(String^ fileName)
 	for (int i = 0; i < len; i++)
 	{
 		String^ Line = gcnew String("");
-		Line = food_list[i]->Name + "$" + food_list[i]->Cal +"$"+ food_list[i]->Price + "\n";
+		if (food_list[i]->Cal >= 0 && food_list[i]->Cal < 10)
+		{
+			Line = food_list[i]->Name + "$" + "00" + food_list[i]->Cal + "$" + food_list[i]->Price + "\n";
+		}
+		else
+		{
+			if (food_list[i]->Cal < 100)
+			{
+				Line = food_list[i]->Name + "$" + "0" + food_list[i]->Cal + "$" + food_list[i]->Price + "\n";
+
+			}
+			else
+			{
+				Line = food_list[i]->Name + "$" + food_list[i]->Cal + "$" + food_list[i]->Price + "\n";
+
+			}
+		}
+
+		
 		My_SW->Write(Line);
 	}
 	My_SW->Close();
@@ -342,10 +360,32 @@ void food_arr::Infile(String^ fileName)
 		for (int j = 0; j < lunch_list[i]->Len; j++)
 		{
 			String^ Line_1 = gcnew String("");
-			Line_1 = lunch_list[i]->Food_list[j]->Name + "$" + lunch_list[i]->Food_list[j]->Cal + "$" + lunch_list[i]->Food_list[j]->Price + "\n";
+
+
+			if (lunch_list[i]->Food_list[j]->Cal >= 0 && lunch_list[i]->Food_list[j]->Cal < 10)
+			{
+				Line_1 = lunch_list[i]->Food_list[j]->Name + "$" + "00" + lunch_list[i]->Food_list[j]->Cal + "$" + lunch_list[i]->Food_list[j]->Price + "\n";
+			}
+			else
+			{
+				if (lunch_list[i]->Food_list[j]->Cal < 100)
+				{
+					Line_1 = lunch_list[i]->Food_list[j]->Name + "$" + "0" + lunch_list[i]->Food_list[j]->Cal + "$" + lunch_list[i]->Food_list[j]->Price + "\n";
+
+				}
+				else
+				{
+					Line_1 = lunch_list[i]->Food_list[j]->Name + "$" + lunch_list[i]->Food_list[j]->Cal + "$" + lunch_list[i]->Food_list[j]->Price + "\n";
+
+				}
+			}
+
+
+
+
 			My_SW->Write(Line_1);
 		}
-		if (Count>1) My_SW->Write(space);
+		if (Count > 1 && i != Count - 1) My_SW->Write(space);
 	}
 	My_SW->Close();
 }
