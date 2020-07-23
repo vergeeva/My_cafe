@@ -65,7 +65,6 @@ public:
 	double sum_price();
 	int sum_cal();
 	food^ sort_cal(int cal);
-	//Выбрать все блюда, калорийность которых ниже, чем указанное значение, и подсчитать их стоимость.
 	void Load(String^);
 	void Infile(String^);
 	food^ operator =(food^ other);

@@ -118,6 +118,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="About_us.cpp" />
     <ClCompile Include="food.cpp" />
     <ClCompile Include="Key_Menu.cpp" />
     <ClCompile Include="menu.cpp" />
@@ -125,6 +126,9 @@
     <ClCompile Include="My_order.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="About_us.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="food.h" />
     <ClInclude Include="Key_Menu.h">
       <FileType>CppForm</FileType>
@@ -140,6 +144,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="About_us.resx">
+      <DependentUpon>About_us.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Key_Menu.resx">
       <DependentUpon>Key_Menu.h</DependentUpon>
     </EmbeddedResource>
