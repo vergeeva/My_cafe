@@ -295,9 +295,18 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 }
 private: System::Void dataGridView1_CellContentDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	int i = e->RowIndex;
-	list_order->Add(list->Food_list[i]);
-	list_order->Infile("Заказ_блюда.txt");
-	MessageBox::Show("Блюдо успешно добавлено в заказ", "Сообщение о добавлении");
+	auto result = MessageBox::Show(
+		"Вы действительно хотите добавить блюдо в список?",
+		"Подтвердите добавление",
+		MessageBoxButtons::YesNo,
+		MessageBoxIcon::Question);
+
+	if (result == System::Windows::Forms::DialogResult::Yes)
+	{
+		list_order->Add(list->Food_list[i]);
+		list_order->Infile("Заказ_блюда.txt");
+		MessageBox::Show("Блюдо успешно добавлено в заказ", "Сообщение о добавлении");
+	}
 }
 private: System::Void button1_Click_1(System::Object^ sender, System::EventArgs^ e) {
 	MessageBox::Show("Чтобы добавить блюдо в заказ, нажмите дважды на название блюда", "Помощь");

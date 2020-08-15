@@ -422,9 +422,19 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 
 private: System::Void DataGridView1_CellContentDoubleClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 	int i = e->RowIndex;
-	list_order->Add(list->Lunch_list[i]);
-	list_order->Infile("Заказ_ланчи.txt");
-	MessageBox::Show("Бизнес-ланч успешно добавлено в заказ", "Сообщение о добавлении");
+	auto result = MessageBox::Show(
+		"Вы действительно хотите добавить ланч в список?",
+		"Подтвердите добавление",
+		MessageBoxButtons::YesNo,
+		MessageBoxIcon::Question);
+
+	if (result == System::Windows::Forms::DialogResult::Yes)
+	{
+		list_order->Add(list->Lunch_list[i]);
+		list_order->Infile("Заказ_ланчи.txt");
+		MessageBox::Show("Бизнес-ланч успешно добавлено в заказ", "Сообщение о добавлении");
+	}
+
 }
 
 };
